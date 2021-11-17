@@ -2,9 +2,12 @@ trigger:
 - master
 
 pool:
-  vmImage: macOS-latest
+  vmImage: ubuntu-latest
 
 variables:
+  GOPATH: '$(Agent.HomeDirectory)/go' # Go workspace path
+  GOBIN:  '$(GOPATH)/bin' # Go binaries path
+  GOROOT: '/opt/hostedtoolcache/go/1.15.8/x64' # Go installation path
   DARWIN_AMD64_BINARY: "gitleaks-darwin-amd64"
   LINUX_AMD64_BINARY: "gitleaks-linux-amd64"
   WIN_AMD64_BINARY: "gitleaks-win-amd64.exe"
