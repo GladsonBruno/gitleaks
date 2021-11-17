@@ -2,7 +2,7 @@ trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: macOS-latest
 
 variables:
   DARWIN_AMD64_BINARY: "gitleaks-darwin-amd64"
