@@ -16,8 +16,20 @@ steps:
     version: '1.16'
 
 - task: CmdLine@2
+  displayName: Build MacOS
   inputs:
     script: |
-      env
-      set
       env GOOS="darwin" GOARCH="amd64" go build -o "build/${DARWIN_AMD64_BINARY}" -ldflags "-X=github.com/zricethezav/gitleaks/v7/version.Version=${BUILD_ID}"
+
+- task: CmdLine@2
+  displayName: Build Windows
+  inputs:
+    script: |
+      env GOOS="windows" GOARCH="amd64" go build -o "build/${WIN_AMD64_BINARY}" -ldflags "-X=github.com/zricethezav/gitleaks/v7/version.Version=${BUILD_ID}"
+
+- task: CmdLine@2
+  displayName: Build Linux
+  inputs:
+    script: |
+      env GOOS="linux" GOARCH="amd64" go build -o "build/${LINUX_AMD64_BINARY}" -ldflags "-X=github.com/zricethezav/gitleaks/v7/version.Version=${BUILD_ID}"
+
