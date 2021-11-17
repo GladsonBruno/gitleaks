@@ -8,9 +8,10 @@ variables:
   DARWIN_AMD64_BINARY: "gitleaks-darwin-amd64"
   LINUX_AMD64_BINARY: "gitleaks-linux-amd64"
   WIN_AMD64_BINARY: "gitleaks-win-amd64.exe"
+  BUILD_ID: ${Build.BuildNumber}
 
 steps:
 - task: CmdLine@2
   inputs:
     script: |
-      env GOOS="darwin" GOARCH="amd64" go build -o "build/${DARWIN_AMD64_BINARY}" -ldflags "-X=github.com/zricethezav/gitleaks/v7/version.Version=${Build.BuildNumber}"      
+      env GOOS="darwin" GOARCH="amd64" go build -o "build/${DARWIN_AMD64_BINARY}" -ldflags "-X=github.com/zricethezav/gitleaks/v7/version.Version=${BUILD_ID}"
