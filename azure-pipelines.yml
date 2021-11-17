@@ -10,17 +10,7 @@ variables:
   WIN_AMD64_BINARY: "gitleaks-win-amd64.exe"
 
 steps:
-- task: Go@0
+- task: CmdLine@2
   inputs:
-    command: 'custom'
-    customCommand: 'env GOOS="darwin" GOARCH="amd64" go build -o "build/${DARWIN_AMD64_BINARY}" -ldflags "-X=github.com/zricethezav/gitleaks/v7/version.Version=${Build.BuildNumber}"'
-
-- task: Go@0
-  inputs:
-    command: 'custom'
-    customCommand: 'env GOOS="linux" GOARCH="amd64" go build -o "build/${LINUX_AMD64_BINARY}" -ldflags "-X=github.com/zricethezav/gitleaks/v7/version.Version=${Build.BuildNumber}"'
-
-- task: Go@0
-  inputs:
-    command: 'custom'
-    customCommand: 'env GOOS="windows" GOARCH="amd64" go build -o "build/${WIN_AMD64_BINARY}" -ldflags "-X=github.com/zricethezav/gitleaks/v7/version.Version=${Build.BuildNumber}"'
+    script: |
+      env GOOS="darwin" GOARCH="amd64" go build -o "build/${DARWIN_AMD64_BINARY}" -ldflags "-X=github.com/zricethezav/gitleaks/v7/version.Version=${Build.BuildNumber}"      
