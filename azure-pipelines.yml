@@ -17,4 +17,6 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
+      env
+      set
       env GOOS="darwin" GOARCH="amd64" go build -o "build/${DARWIN_AMD64_BINARY}" -ldflags "-X=github.com/zricethezav/gitleaks/v7/version.Version=${BUILD_ID}"
